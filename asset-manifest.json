@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dz10react/static/css/main.7a71761a.css",
+    "main.js": "/dz10react/static/js/main.60d90c67.js",
+    "index.html": "/dz10react/index.html",
+    "main.7a71761a.css.map": "/dz10react/static/css/main.7a71761a.css.map",
+    "main.60d90c67.js.map": "/dz10react/static/js/main.60d90c67.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a71761a.css",
+    "static/js/main.60d90c67.js"
+  ]
+}
