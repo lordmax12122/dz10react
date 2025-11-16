@@ -54,6 +54,8 @@ ul {
 }
 
 li {
+  background-color: white;
+  border-radius: 25px;
   display: flex;
   gap: 30px;
   align-items: center;
@@ -83,15 +85,4 @@ button {
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-input[type="checkbox"] {
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  font: inherit;
-  color: currentColor;
-  width: 20px;
-  height: 20px;
-  border: 0.15em solid currentColor;
-  border-radius: 0.15em;
-  transform: translateY(-0.075em);
-}
+

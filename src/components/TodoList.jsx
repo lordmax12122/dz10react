@@ -1,79 +1,72 @@
 import React from "react"
 
 class TodoList extends React.Component {
-state = {
-    items: [
-        {id: 1, text: "Поприбирати"}
-    ]
-}
+    state = {
+        items: [
+            { id: 1, text: "Поприбирати", completed: false }
+        ]
+    }
 
-addTodo = () => {
-    const text = prompt("Яке у вас завдання?")
-    const newTodo = {
-        id: Date.now(),
-        text
+    addTodo = () => {
+        const text = prompt("Яке у вас завдання?");
+        if (!text) return;
+
+        const newTodo = {
+            id: Date.now(),
+            text,
+            completed: false
+        };
+
+        this.setState(prevState => ({
+            items: [...prevState.items, newTodo]
+        }));
     };
 
-    this.setState(prevState => ({
-        items: [...prevState.items, newTodo]
-    }))
-};
+    deleteTodo = (id) => {
+        this.setState(prevState => ({
+            items: prevState.items.filter(task => task.id !== id)
+        }));
+    };
 
-deleteTodo = (id) => {
-    this.setState(prevState => ({
-        items: prevState.items.filter(task => task.id !== id)
-    }))
-}
+    toggleTodo = (id) => {
+        this.setState(prevState => ({
+            items: prevState.items.map(task =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
+        }));
+    };
 
-render() {
+    render() {
         return (
             <div>
                 <button onClick={this.addTodo}>
                     Добавити задачу
                 </button>
+
                 <ul>
                     {this.state.items.map(item => (
-                        <li>
-                            <input type="checkbox"></input>
-                            <h2>{item.text}</h2>
-                            <button onClick={() => this.deleteTodo(item.id)}>Видалити</button>
+                        <li key={item.id}>
+                            <input
+                                type="checkbox"
+                                checked={item.done}
+                                onChange={() => this.toggleTodo(item.id)}
+                            />
+
+                            <h2 style={{
+                                textDecoration: item.completed ? "line-through" : "none"
+                            }}>
+                                {item.text}
+                            </h2>
+
+                            <button onClick={() => this.deleteTodo(item.id)}>
+                                Видалити
+                            </button>
                         </li>
                     ))}
                 </ul>
             </div>
-        )
+        );
     }
-
 }
-    // addTodo = () => {
-    //     const text = prompt("Яке у вас завдання")
-    //     if (text !== "") {
-    //         TodoList.items.push({ id: Date.now + 1, text })
-    //     }
-    // }
 
-    // deleteTodo = (id) => {
-    //     TodoList.items = TodoList.items.filter(task => task.id !== id)
-    // }
-
-
-    // render() {
-    //     return (
-    //         <div>
-    //             <button onClick={this.addTodo}>
-    //                 Добавити задачу
-    //             </button>
-    //             <ul>
-    //                 {TodoList.items.map(item => (
-    //                     <li>
-    //                         <input type="checkbox"></input>
-    //                         <h2>{item.text}</h2>
-    //                         <button onClick={() => this.deleteTodo(item.id)}>Видалити</button>
-    //                     </li>
-    //                 ))}
-    //             </ul>
-    //         </div>
-    //     )
-    // }
-
-    export default TodoList
+export default TodoList;
